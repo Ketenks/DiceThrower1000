@@ -81,10 +81,9 @@ namespace DiceThrower1000
 
                 //random number generator and the associated die roll for the number of faces
                 Random randomNumberGenerator = new Random();
-
-                //for some reason, dieRoll has a fixed random value. once it is evaluated it doesn't change in my for loop below
-                //so i put it there
-               // int dieRoll = randomNumberGenerator.Next(1, (number2 + 1));
+                int totalRoll = 0;
+               var dieRollList = new List<int>();
+                
                 
                 
                 //final output
@@ -95,14 +94,38 @@ namespace DiceThrower1000
                 for (int i = 0; i < number1; i++)
                 {
                     int dieRoll = randomNumberGenerator.Next(1, (number2 + 1));
-                    Console.Write("0" + dieRoll + " | ");
+                    totalRoll += dieRoll;
+                    dieRollList.Add(dieRoll);
+                    Console.Write(i + 1 + " 0" + dieRoll + " | ");
+
                 }
+                //make a new line from for loop
+                Console.WriteLine();
+
+                //make average after for loop changes
+                int averageRoll = totalRoll / number2;
+                var top3 = dieRollList.OrderByDescending(x => x).Take(3).ToList();
+                var bottom3 = dieRollList.OrderBy(x => x).Take(3).ToList();
+                string bot3 = string.Join(", ", bottom3);
+                string topS3 = string.Join(", ", top3);
+
+                
+                //EXTRA CREDIT!!!!!!!!!
+                Console.WriteLine();
+                Console.WriteLine("Statistics\n----------");
+                Console.WriteLine("Average Roll: " + averageRoll);
+                Console.WriteLine("Top 3 Rolls: " + topS3);
+                Console.WriteLine("Bottom 3 Rolls: " + bot3);
 
                 //make a space between function calls
                 Console.WriteLine();
 
+                //var l2 = new List<string>();
+                //var results = l2.Where(x => x.unitPrice < search);
 
-               
+                //var dieRollList = new List<int>();
+                //var top3 = list.OrderByDescending(x => x).Take(3);
+                //var bot3 = list.OrderBy(x => x).Take(3);
                 
             }
             else
